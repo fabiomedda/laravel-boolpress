@@ -30,4 +30,9 @@ class PageController extends Controller
         return view('blog', compact('posts'));
     }
 
+    public function articles_api()
+    {
+        return view('boolpress.articles_api');
+    }
+
 }

@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Post;
 use App\Categorytwo;
+use App\Tag;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +35,12 @@ Route::get('categories', function () {
     return response()->json([
         'success' => true,
         'data' => Categorytwo::all()
+    ], 200);
+});
+
+Route::get('tags', function () {
+    return response()->json([
+        'success' => true,
+        'data' => Tag::all()
     ], 200);
 });
