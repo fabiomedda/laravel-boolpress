@@ -10963,7 +10963,7 @@ body {
 
 header > a {
   margin: 15px;
-  padding: 15px;
+  padding: 15px 0;
   text-transform: uppercase;
   font-weight: bold;
   text-decoration: none;

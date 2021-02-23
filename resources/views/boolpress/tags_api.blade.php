@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('title')
-Articles api
+Tags api
 @endsection
 
 @section('content')
 
 <main>
 
-    <h1>Articles api</h1>
+    <h1>Tags api</h1>
     <div id="app">
-        <articles_api-component></articles_api-component>
+        <tags_api-component></tags_api-component>
     </div>
 
 </main>

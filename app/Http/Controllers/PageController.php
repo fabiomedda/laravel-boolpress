@@ -35,4 +35,14 @@ class PageController extends Controller
         return view('boolpress.articles_api');
     }
 
+    public function categories_api()
+    {
+        return view('boolpress.categories_api');
+    }
+
+    public function tags_api()
+    {
+        return view('boolpress.tags_api');
+    }
+
 }
