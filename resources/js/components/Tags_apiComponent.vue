@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="box" v-for="tag in tags">
+                <div class="box" v-for="tag in tags" :key="tag.id">
                     <div class="card-header">
                         {{tag.name}}
                     </div>

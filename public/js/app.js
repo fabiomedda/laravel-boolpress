@@ -37745,7 +37745,7 @@ var render = function() {
         "div",
         { staticClass: "col-md-8" },
         _vm._l(_vm.articles, function(article) {
-          return _c("div", { staticClass: "box" }, [
+          return _c("div", { key: article.id, staticClass: "box" }, [
             _c("div", { staticClass: "card-header" }, [
               _vm._v(
                 "\n                    " +
@@ -37804,7 +37804,7 @@ var render = function() {
         "div",
         { staticClass: "col-md-8" },
         _vm._l(_vm.categories, function(category) {
-          return _c("div", { staticClass: "box" }, [
+          return _c("div", { key: category.id, staticClass: "box" }, [
             _c("div", { staticClass: "card-header" }, [
               _vm._v(
                 "\n                    " +
@@ -37910,7 +37910,7 @@ var render = function() {
         "div",
         { staticClass: "col-md-8" },
         _vm._l(_vm.tags, function(tag) {
-          return _c("div", { staticClass: "box" }, [
+          return _c("div", { key: tag.id, staticClass: "box" }, [
             _c("div", { staticClass: "card-header" }, [
               _vm._v(
                 "\n                    " +

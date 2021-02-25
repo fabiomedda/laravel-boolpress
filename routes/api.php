@@ -24,23 +24,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 */
 
-Route::get('articles', function(){
-    return response()->json([
-        'success' => true,
-        'data' => Post::all()
-    ], 200);
-});
-
-Route::get('categories', function () {
-    return response()->json([
-        'success' => true,
-        'data' => Categorytwo::all()
-    ], 200);
-});
-
-Route::get('tags', function () {
-    return response()->json([
-        'success' => true,
-        'data' => Tag::all()
-    ], 200);
-});
+Route::get('articles', 'API\ArticleController@index');
+Route::get('categories', 'API\CategorytwoController@index');
+Route::get('tags', 'API\TagController@index');

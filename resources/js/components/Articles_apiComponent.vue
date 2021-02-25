@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="box" v-for="article in articles">
+                <div class="box" v-for="article in articles" :key="article.id">
                     <div class="card-header">
                         {{article.title}}
                     </div>

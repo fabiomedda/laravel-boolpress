@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Categorytwo;
+
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -34,7 +36,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $cat = Categorytwo::all();
+        return view('posts.create', compact('cat'));
     }
 
     /**
@@ -57,6 +60,7 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:50',
             'body' => 'required',
+            'categorytwo_id' => '',
         ]);
 
         Post::create($validatedData);
@@ -90,7 +94,7 @@ class PostController extends Controller
 
         //dd($post);
         //dd($post->title);
-        //dd($post->body);
+        //dd($post->categorytwo->name);
 
         return view('posts.show', compact('post'));
 
@@ -106,9 +110,11 @@ class PostController extends Controller
     {
         //
 
-        //dd($post);
+        // dd($post);
+        $categories = Categorytwo::all();
+        //dd($categories);
         
-        return view('posts.edit', compact('post'));
+        return view('posts.edit', compact('post', 'categories'));
     
     }
 
@@ -130,7 +136,10 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:50',
             'body' => 'required',
+            'categorytwo_id' => '',
         ]);
+
+        //dd($validatedData);
         
         $post->update($validatedData);
 

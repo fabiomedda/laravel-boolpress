@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="box" v-for="category in categories">
+                <div class="box" v-for="category in categories" :key="category.id">
                     <div class="card-header">
                         {{category.name}}
                     </div>
