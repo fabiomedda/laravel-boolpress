@@ -45,11 +45,29 @@
                 <select class="form-control" name="categorytwo_id" id="categorytwo_id">
                     <option value="">none</option>
                     @foreach($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    <option value="{{$category->id}}" {{ $post->categorytwo_id == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
                     @endforeach
                 </select>
 
             </div>
+            @error('categorytwo_id')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
+            <div class="form-group">
+                <label for="tags">Tags</label>
+                <select class="form-control" name="tags[]" id="tags" multiple>
+                    @if($tags)
+                    @foreach($tags as $tag)
+                    <option value="{{$tag->id}}" {{ $post->tags->contains($tag) ? 'selected' : '' }}>{{$tag->name}}</option>
+                    @endforeach
+                    @endif
+                </select>
+            </div>
+            @error('tags')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
 

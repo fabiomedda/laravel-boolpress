@@ -15,10 +15,10 @@ class TagSeeder extends Seeder
     {
         //
         for ($i = 0; $i < 10; $i++) {
-            $newCat = new Tag();
-            $newCat->name = $faker->word();
-            $newCat->description = $faker->sentence(6);
-            $newCat->save();
+            $newTag = new Tag();
+            $newTag->name = $faker->word();
+            $newTag->description = $faker->sentence(6);
+            $newTag->save();
         }
     }
 }

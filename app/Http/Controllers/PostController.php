@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Categorytwo;
+use App\Tag;
+
 
 use Illuminate\Http\Request;
 
@@ -37,7 +39,8 @@ class PostController extends Controller
     public function create()
     {
         $cat = Categorytwo::all();
-        return view('posts.create', compact('cat'));
+        $tags = Tag::all();
+        return view('posts.create', compact('cat', 'tags'));
     }
 
     /**
@@ -55,12 +58,13 @@ class PostController extends Controller
 
         //dd($request->all());
         //dd(request('title'), request('body'));
-
+        
         // Validare i dati
         $validatedData = $request->validate([
             'title' => 'required|max:50',
             'body' => 'required',
-            'categorytwo_id' => '',
+            'categorytwo_id' => 'exists:categorytwos,id',
+            'tags' => 'exists:tags,id',
         ]);
 
         Post::create($validatedData);
@@ -74,7 +78,7 @@ class PostController extends Controller
 
         //$new_post = Post::orderby('title')->take(5)->get();
         $new_post = Post::orderby('id', 'desc')->first();
-
+        $new_post->tags()->attach($request->tags);
 
         return redirect()->route('posts.show', $new_post);
 
@@ -113,8 +117,9 @@ class PostController extends Controller
         // dd($post);
         $categories = Categorytwo::all();
         //dd($categories);
+        $tags = Tag::all();
         
-        return view('posts.edit', compact('post', 'categories'));
+        return view('posts.edit', compact('post', 'categories', 'tags'));
     
     }
 
@@ -136,13 +141,14 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:50',
             'body' => 'required',
-            'categorytwo_id' => '',
+            'categorytwo_id' => 'exists:categorytwos,id',
+            'tags' => 'exists:tags,id',
         ]);
 
         //dd($validatedData);
         
         $post->update($validatedData);
-
+        $post->tags()->sync($request->tags);
         /*
         $data = $request->all();
         $post->update($data);
