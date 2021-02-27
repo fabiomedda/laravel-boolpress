@@ -80,7 +80,7 @@ class PostController extends Controller
         $new_post = Post::orderby('id', 'desc')->first();
         $new_post->tags()->attach($request->tags);
 
-        return redirect()->route('posts.show', $new_post);
+        return redirect()->route('posts.index', $new_post);
 
         //back: ritorna alla location precedente
         //return back();

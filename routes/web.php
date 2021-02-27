@@ -26,6 +26,7 @@ Route::get('about', 'PageController@about')->name('about');
 Route::get('blog', 'PageController@blog')->name('blog');
 
 Route::resource('posts', 'PostController');
+Route::resource('categories', 'CategorytwoController');
 
 Route::get('articles_api', 'PageController@articles_api')->name('articles_api');
 Route::get('categories_api', 'PageController@categories_api')->name('categories_api');

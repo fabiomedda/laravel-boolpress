@@ -15,6 +15,8 @@ class CategorytwoController extends Controller
     public function index()
     {
         //
+        $categories = Categorytwo::latest()->get();
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -25,6 +27,7 @@ class CategorytwoController extends Controller
     public function create()
     {
         //
+        return view('categories.create');
     }
 
     /**
@@ -34,8 +37,18 @@ class CategorytwoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        // Validare i dati
+        $validatedData = $request->validate([
+            'name' => 'required|max:50',
+            'description' => 'required',            
+        ]);
+
+        Categorytwo::create($validatedData);
+
+        $new_post = Categorytwo::orderby('id', 'desc')->first();
+
+        return redirect()->route('categories.index', $new_post);
     }
 
     /**
@@ -44,9 +57,10 @@ class CategorytwoController extends Controller
      * @param  \App\Categorytwo  $categorytwo
      * @return \Illuminate\Http\Response
      */
-    public function show(Categorytwo $categorytwo)
+    public function show(Categorytwo $category)
     {
-        //
+        $cat = $category;
+        return view('categories.show', compact('cat'));
     }
 
     /**
@@ -55,9 +69,11 @@ class CategorytwoController extends Controller
      * @param  \App\Categorytwo  $categorytwo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categorytwo $categorytwo)
+    public function edit(Categorytwo $category)
     {
         //
+        $cat = $category;
+        return view('categories.edit', compact('cat'));
     }
 
     /**
@@ -67,9 +83,17 @@ class CategorytwoController extends Controller
      * @param  \App\Categorytwo  $categorytwo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categorytwo $categorytwo)
+    public function update(Request $request, Categorytwo $category)
     {
-        //
+
+        // Validare i dati
+        $validatedData = $request->validate([
+            'name' => 'required|max:50',
+            'description' => 'required',
+        ]);
+
+        $category->update($validatedData);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -78,8 +102,11 @@ class CategorytwoController extends Controller
      * @param  \App\Categorytwo  $categorytwo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categorytwo $categorytwo)
+    public function destroy(Categorytwo $category)
     {
         //
+        $category->delete();
+
+        return redirect()->route('categories.index');
     }
 }
